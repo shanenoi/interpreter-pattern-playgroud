@@ -1,11 +1,5 @@
 package main
 
-// Expression is AbstractExpression
-type Expression interface {
-	// Evaluate is interpret
-	Evaluate() float64
-}
-
 // Number is TerminalExpression
 type Number struct {
 	value float64
@@ -59,3 +53,15 @@ type Divide struct {
 func (d *Divide) Evaluate() float64 {
 	return d.Left.Evaluate() / d.Right.Evaluate()
 }
+
+// Expression is AbstractExpression
+type Expression interface {
+	// Evaluate is interpret
+	Evaluate() float64
+}
+
+var _ Expression = (*Number)(nil)
+var _ Expression = (*Add)(nil)
+var _ Expression = (*Subtract)(nil)
+var _ Expression = (*Multiply)(nil)
+var _ Expression = (*Divide)(nil)
